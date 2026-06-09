@@ -21,7 +21,7 @@ Folder_name="FEarthquake_mydata"
 HF_username="hasilm1"
 App_name="Earthquake_prediction"
 Column_name="latitude"
-Column_name2="longitude
+Column_name2="longitude"
 Test_size=0.2
 Random_state=42
 
