@@ -1,0 +1,43 @@
+import streamlit as st
+import pandas as pd
+from huggingface_hub import hf_hub_download
+import joblib
+
+
+Folder_name="FEarthquake_mydata"
+HF_username="hasilm1"
+App_name="Earthquake_prediction"
+
+Model_name="best_predict_earthquake_model_v1.joblib"
+data_filename="earthquakes.csv"
+
+# Download and load the model
+model_path = hf_hub_download(repo_id=str(HF_username)+"/"+str(App_name), filename=Model_name) # enter the Hugging Face username here
+model = joblib.load(model_path)
+
+# Streamlit UI for Machine Failure Prediction
+st.title(str(App_name)+" App")
+st.write("""
+This application predicts the data set provided.
+Please enter the data below to get a prediction.
+""")
+
+# User inputs
+day = st.number_input("Day", min_value=1, max_value=31, value=1)
+month = st.number_input("Month", min_value=1, max_value=12, value=1)
+year = st.number_input("Year", min_value=1900, max_value=2099, value=2026)
+
+# Assemble input into DataFrame
+input_data = pd.DataFrame([{
+    'day': day,
+    'month': month,
+    'year': year,
+    'age': age
+}])
+
+# Prediction button
+if st.button("Predict "):
+    prediction = model.predict(input_data)[0]
+    #result = "Diabetic" if prediction == 1 else "Non-Diabetic"
+    #st.subheader("Prediction Result:")
+    st.success(f"The latitude: **{prediction}**")
