@@ -10,13 +10,6 @@ from sklearn.preprocessing import LabelEncoder
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi
 
-# Define constants for the dataset and output paths
-api = HfApi(token=os.getenv("HF_TOKEN"))
-print(os.getenv("HF_TOKEN"))
-DATASET_PATH = "hf://datasets/"+str(HF_username)+"/"+str(App_name)+"/pima.csv"                  # enter the Hugging Face username here
-df = pd.read_csv(DATASET_PATH)
-print("Dataset loaded successfully.")
-
 Folder_name="FEarthquake_mydata"
 HF_username="hasilm1"
 App_name="Earthquake_prediction"
@@ -24,6 +17,14 @@ Column_name="latitude"
 Column_name2="longitude"
 Test_size=0.2
 Random_state=42
+data_filename="earthquakes.csv"
+
+# Define constants for the dataset and output paths
+api = HfApi(token=os.getenv("HF_TOKEN"))
+print(os.getenv("HF_TOKEN"))
+DATASET_PATH = "hf://datasets/"+str(HF_username)+"/"+str(App_name)+"/"+str(data_filename)                  # enter the Hugging Face username here
+df = pd.read_csv(DATASET_PATH)
+print("Dataset loaded successfully.")
 
 target_col = str(Column_name)
 
