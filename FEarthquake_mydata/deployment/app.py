@@ -43,7 +43,6 @@ input_data = pd.DataFrame([{
     'time':time,
     'hour':hour,
     'longitude':longitude,
-    'latitude':latitude,
     'depth':depth,
     'mag':mag
 }])
