@@ -27,7 +27,7 @@ day = st.number_input("Day", min_value=1, max_value=31, value=1)
 month = st.number_input("Month", min_value=1, max_value=12, value=1)
 year = st.number_input("Year", min_value=1900, max_value=2099, value=2026)
 
-time=1981-06-05 13:02:04.800000+00:00
+time="1981-06-05 13:02:04.800000+00:00"
 year=1981
 month=6
 day_of_year=156
