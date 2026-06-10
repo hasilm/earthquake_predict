@@ -3,7 +3,7 @@ import os
 
 Folder_name="FEarthquake_mydata"
 HF_username="hasilm1"
-App_name="Predict_mydata"
+App_name="earthquake_prediction"
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
 api.upload_folder(
