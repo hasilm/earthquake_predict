@@ -6,6 +6,7 @@ from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 # for model training, tuning, and evaluation
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, classification_report, recall_score
 # for model serialization
