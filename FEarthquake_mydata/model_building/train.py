@@ -76,8 +76,8 @@ model_pipeline = make_pipeline(preprocessor, gb_model)
 gb_model.fit(Xtrain, ytrain)
 
 # Best model
-best_model = grid_search.best_estimator_
-print("Best Params:\n", grid_search.best_params_)
+#best_model = grid_search.best_estimator_
+#print("Best Params:\n", grid_search.best_params_)
 
 # Predict on training set
 #y_pred_train = best_model.predict(Xtrain)
