@@ -35,12 +35,12 @@ ytest = pd.read_csv(ytest_path)
 
 # scale numeric features
 numeric_features = [
-    'time',
     'year',
     'month',
     'day_of_year',
     'hour',
     'longitude',
+    'depth',
     'mag'
 ]
 
