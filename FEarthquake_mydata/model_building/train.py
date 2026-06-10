@@ -6,7 +6,7 @@ from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 # for model training, tuning, and evaluation
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.ensemble import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, classification_report, recall_score
 # for model serialization
@@ -53,7 +53,10 @@ preprocessor = make_column_transformer(
 
 # Define GB model
 gb_model = GradientBoostingClassifier(random_state=42)
+clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
 
+# 5. Train (fit) the model on the training data
+clf.fit(X_train, y_train)
 # Define hyperparameter grid
 param_grid = {
     'gradientboostingclassifier__n_estimators': [75, 100, 125],
@@ -62,8 +65,7 @@ param_grid = {
 }
 
 # Create pipeline
-# model_pipeline = make_pipeline(preprocessor, gb_model)
-model_pipeline = make_pipeline(preprocessor, DecisionTreeClassifier())
+model_pipeline = make_pipeline(preprocessor, gb_model)
 
 # Grid search with cross-validation
 grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='recall', n_jobs=-1)
@@ -75,10 +77,12 @@ best_model = grid_search.best_estimator_
 print("Best Params:\n", grid_search.best_params_)
 
 # Predict on training set
-y_pred_train = best_model.predict(Xtrain)
+#y_pred_train = best_model.predict(Xtrain)
+y_pred_train = clf.predict(Xtrain)
 
 # Predict on test set
-y_pred_test = best_model.predict(Xtest)
+#y_pred_test = best_model.predict(Xtest)
+y_pred_test = clf.predict(Xtest)
 
 # Evaluation
 print("\nTraining Classification Report:")
