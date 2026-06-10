@@ -31,8 +31,7 @@ year = st.number_input("Year", min_value=1900, max_value=2099, value=2026)
 input_data = pd.DataFrame([{
     'day': day,
     'month': month,
-    'year': year,
-    'age': age
+    'year': year
 }])
 
 # Prediction button
