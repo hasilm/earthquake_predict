@@ -30,6 +30,8 @@ target_col = str(Column_name)
 
 # Split into X (features) and y (target)
 X = df.drop(columns=[target_col,'id','time'])
+#X = X.dropna()
+
 y = df[target_col]
 
 # Perform train-test split
