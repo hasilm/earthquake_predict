@@ -32,7 +32,7 @@ target_col = str(Column_name)
 X = df.drop(columns=[target_col,'id','time'])
 X = X.dropna()
 
-y = X[target_col]
+y = df[target_col,'id','time']
 
 # Perform train-test split
 Xtrain, Xtest, ytrain, ytest = train_test_split(
