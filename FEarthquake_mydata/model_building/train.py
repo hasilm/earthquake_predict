@@ -34,6 +34,7 @@ ytrain = pd.read_csv(ytrain_path)
 ytest = pd.read_csv(ytest_path)
 
 #id,time,year,month,day_of_year,hour,latitude,longitude,depth,mag
+#year,month,day_of_year,hour,longitude,depth,mag
 
 # scale numeric features
 numeric_features = [
@@ -53,7 +54,7 @@ preprocessor = make_column_transformer(
 )
 
 # Define GB model
-gb_model = GradientBoostingClassifier(random_state=42)
+#gb_model = GradientBoostingClassifier(random_state=42)
 from sklearn.ensemble import RandomForestRegressor
 gb_model = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
 
