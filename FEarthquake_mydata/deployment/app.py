@@ -35,12 +35,15 @@ hour=13
 longitude=140.6
 depth=68.2
 mag=5.2
+
+#df = df.dropna()
+#X = df.drop(columns=[target_col,'id','time'])
+
 # Assemble input into DataFrame
 input_data = pd.DataFrame([{
     'day_of_year': day_of_year,
     'month': month,
     'year': year,
-    'time':time,
     'hour':hour,
     'longitude':longitude,
     'depth':depth,
