@@ -29,8 +29,7 @@ print("Dataset loaded successfully.")
 target_col = str(Column_name)
 
 # Split into X (features) and y (target)
-X = df.drop(columns=[target_col])
-X = df.drop(columns=['id'])
+X = df.drop(columns=[target_col,'id','time'])
 y = df[target_col]
 
 # Perform train-test split
