@@ -61,7 +61,8 @@ param_grid = {
 }
 
 # Create pipeline
-model_pipeline = make_pipeline(preprocessor, gb_model)
+# model_pipeline = make_pipeline(preprocessor, gb_model)
+model_pipeline = make_pipeline(preprocessor, DecisionTreeClassifier())
 
 # Grid search with cross-validation
 grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='recall', n_jobs=-1)
