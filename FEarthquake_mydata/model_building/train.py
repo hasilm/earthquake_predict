@@ -53,10 +53,10 @@ preprocessor = make_column_transformer(
 
 # Define GB model
 gb_model = GradientBoostingClassifier(random_state=42)
-clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
+#clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
 
 # 5. Train (fit) the model on the training data
-clf.fit(Xtrain, ytrain)
+#clf.fit(Xtrain, ytrain)
 # Define hyperparameter grid
 param_grid = {
     'gradientboostingclassifier__n_estimators': [75, 100, 125],
@@ -71,18 +71,17 @@ model_pipeline = make_pipeline(preprocessor, gb_model)
 grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='recall', n_jobs=-1)
 grid_search.fit(Xtrain, ytrain)
 
-
 # Best model
 best_model = grid_search.best_estimator_
 print("Best Params:\n", grid_search.best_params_)
 
 # Predict on training set
-#y_pred_train = best_model.predict(Xtrain)
-y_pred_train = clf.predict(Xtrain)
+y_pred_train = best_model.predict(Xtrain)
+#y_pred_train = clf.predict(Xtrain)
 
 # Predict on test set
-#y_pred_test = best_model.predict(Xtest)
-y_pred_test = clf.predict(Xtest)
+y_pred_test = best_model.predict(Xtest)
+#y_pred_test = clf.predict(Xtest)
 
 # Evaluation
 print("\nTraining Classification Report:")
