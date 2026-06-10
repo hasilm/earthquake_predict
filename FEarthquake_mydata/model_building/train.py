@@ -54,7 +54,7 @@ preprocessor = make_column_transformer(
 # Define GB model
 gb_model = GradientBoostingClassifier(random_state=42)
 from sklearn.ensemble import RandomForestRegressor
-gb_model = RandomForestRegressor()
+gb_model = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
 
 #clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
 
@@ -71,30 +71,34 @@ param_grid = {
 model_pipeline = make_pipeline(preprocessor, gb_model)
 
 # Grid search with cross-validation
-grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='recall', n_jobs=-1)
-grid_search.fit(Xtrain, ytrain)
+#grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='recall', n_jobs=-1)
+#grid_search.fit(Xtrain, ytrain)
+gb_model.fit(Xtrain, ytrain)
 
 # Best model
 best_model = grid_search.best_estimator_
 print("Best Params:\n", grid_search.best_params_)
 
 # Predict on training set
-y_pred_train = best_model.predict(Xtrain)
+#y_pred_train = best_model.predict(Xtrain)
+y_pred_train = gb_model.predict(Xtrain)
 #y_pred_train = clf.predict(Xtrain)
 
 # Predict on test set
-y_pred_test = best_model.predict(Xtest)
+#y_pred_test = best_model.predict(Xtest)
+y_pred_test = gb_model.predict(Xtest)
 #y_pred_test = clf.predict(Xtest)
 
 # Evaluation
 print("\nTraining Classification Report:")
-print(classification_report(ytrain, y_pred_train))
+#print(classification_report(ytrain, y_pred_train))
 
 print("\nTest Classification Report:")
-print(classification_report(ytest, y_pred_test))
+#print(classification_report(ytest, y_pred_test))
 
 # Save best model
 joblib.dump(best_model, Model_name)
+joblib.dump(gb_model, Model_name)
 
 # Upload to Hugging Face
 repo_id = str(HF_username)+"/"+str(App_name)                                         # enter the Hugging Face username here
