@@ -40,7 +40,6 @@ numeric_features = [
     'month',
     'day_of_year',
     'hour',
-    'latitude',
     'longitude',
     'mag'
 ]
