@@ -21,6 +21,7 @@ api = HfApi()
 
 HF_username="hasilm1"
 App_name="Earthquake_prediction"
+Model_name="best_predict_earthquake_model_v1.joblib"
 
 Xtrain_path = "hf://datasets/"+str(HF_username)+"/"+str(App_name)+"/Xtrain.csv"                    # enter the Hugging Face username here
 Xtest_path = "hf://datasets/"+str(HF_username)+"/"+str(App_name)+"/Xtest.csv"                      # enter the Hugging Face username here
