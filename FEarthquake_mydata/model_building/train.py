@@ -53,6 +53,9 @@ preprocessor = make_column_transformer(
 
 # Define GB model
 gb_model = GradientBoostingClassifier(random_state=42)
+from sklearn.ensemble import RandomForestRegressor
+gb_model = RandomForestRegressor()
+
 #clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
 
 # 5. Train (fit) the model on the training data
