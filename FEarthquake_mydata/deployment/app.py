@@ -41,9 +41,9 @@ mag=5.2
 
 # Assemble input into DataFrame
 input_data = pd.DataFrame([{
-    'day_of_year': day_of_year,
-    'month': month,
     'year': year,
+    'month': month,
+    'day_of_year': day_of_year,
     'hour':hour,
     'longitude':longitude,
     'depth':depth,
