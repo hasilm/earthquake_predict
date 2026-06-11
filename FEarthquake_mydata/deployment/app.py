@@ -49,12 +49,8 @@ input_data = pd.DataFrame([{
     'depth':depth,
     'mag':mag
 }])
-input_data1 = pd.DataFrame([{
-    'day_of_year': day_of_year,
-    'month': month,
-    'year': year
-}])
+ 
 # Prediction button
 if st.button("Predict "):
-    prediction = model.predict(input_data1)[0]
+    prediction = model.predict(input_data)[0]
     st.success(f"The latitude: **{prediction}**")
