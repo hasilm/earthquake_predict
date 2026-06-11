@@ -30,8 +30,12 @@ target_col = str(Column_name)
 
 # Split into X (features) and y (target)
 df = df.dropna()
+df = df.drop(columns=['id','time'])
 
-X = df.drop(columns=[target_col,'id','time'])
+DATASET_PATH1 = "hf://datasets/"+str(HF_username)+"/"+str(App_name)+"/earthquake1.csv" # enter the Hugging Face username here
+df.to_csv(DATASET_PATH1, index=False)
+
+X = df.drop(columns=[target_col])
 y = df[target_col]
 
 # Perform train-test split
