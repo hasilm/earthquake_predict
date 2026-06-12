@@ -16,22 +16,13 @@ import os
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
-import logging
+import streamlit as st
+
+# Instead of: print("Hello World")
+st.write("Hello World")
  
 api = HfApi()
-
-# 1. Set the library verbosity level (DEBUG, INFO, WARNING, etc.)
-transformers.logging.set_verbosity_info()
-
-# 2. Get the core Hugging Face logger
-hf_logger = transformers.logging.get_logger()
-
-# 3. Create a file handler to write to 'huggingface.log'
-file_handler = logging.FileHandler("huggingface.log")
-file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-
-# 4. Add the handler to the logger
-hf_logger.addHandler(file_handler)
+ 
 
 
 HF_username="hasilm1"
@@ -106,20 +97,19 @@ y_pred_train = gb_model.predict(Xtrain)
 y_pred_test = gb_model.predict(Xtest)
  
 # Evaluation
-print("\nTraining Classification Report:")
+st.write("\nEvaluation Report:")
  
 # 5. Evaluate the model
 mae = mean_absolute_error(ytest, y_pred_test)
 mse = mean_squared_error(ytest, y_pred_test)
 r2 = r2_score(ytest, y_pred_test)
 
-print(f"Mean Absolute Error (MAE): {mae:.4f}")
-print(f"Mean Squared Error (MSE): {mse:.4f}")
-print(f"R-squared ($R^2$) Score: {r2:.4f}")
+st.write(f"Mean Absolute Error (MAE): {mae:.4f}")
+st.write(f"Mean Squared Error (MSE): {mse:.4f}")
+st.write(f"R-squared ($R^2$) Score: {r2:.4f}")
 
 #print(classification_report(ytrain, y_pred_train))
 
-print("\nTest Classification Report:")
 #print(classification_report(ytest, y_pred_test))
 
 # Save best model
