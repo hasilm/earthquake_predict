@@ -16,14 +16,9 @@ import os
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
-import streamlit as st
-
 # Instead of: print("Hello World")
-st.write("Hello World")
- 
+  
 api = HfApi()
- 
-
 
 HF_username="hasilm1"
 App_name="Earthquake_prediction"
@@ -97,16 +92,16 @@ y_pred_train = gb_model.predict(Xtrain)
 y_pred_test = gb_model.predict(Xtest)
  
 # Evaluation
-st.write("\nEvaluation Report:")
+print("\nEvaluation Report:")
  
 # 5. Evaluate the model
 mae = mean_absolute_error(ytest, y_pred_test)
 mse = mean_squared_error(ytest, y_pred_test)
 r2 = r2_score(ytest, y_pred_test)
 
-st.write(f"Mean Absolute Error (MAE): {mae:.4f}")
-st.write(f"Mean Squared Error (MSE): {mse:.4f}")
-st.write(f"R-squared ($R^2$) Score: {r2:.4f}")
+print(f"Mean Absolute Error (MAE): {mae:.4f}")
+print(f"Mean Squared Error (MSE): {mse:.4f}")
+print(f"R-squared ($R^2$) Score: {r2:.4f}")
 
 #print(classification_report(ytrain, y_pred_train))
 
