@@ -89,10 +89,19 @@ y_pred_train = gb_model.predict(Xtrain)
 # Predict on test set
 #y_pred_test = best_model.predict(Xtest)
 y_pred_test = gb_model.predict(Xtest)
-#y_pred_test = clf.predict(Xtest)
-
+ 
 # Evaluation
 print("\nTraining Classification Report:")
+ 
+# 5. Evaluate the model
+mae = mean_absolute_error(ytest, y_pred_test)
+mse = mean_squared_error(ytest, y_pred_test)
+r2 = r2_score(ytest, y_pred_test)
+
+print(f"Mean Absolute Error (MAE): {mae:.4f}")
+print(f"Mean Squared Error (MSE): {mse:.4f}")
+print(f"R-squared ($R^2$) Score: {r2:.4f}")
+
 #print(classification_report(ytrain, y_pred_train))
 
 print("\nTest Classification Report:")
