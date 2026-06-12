@@ -19,6 +19,20 @@ from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
 
 api = HfApi()
 
+# 1. Set the library verbosity level (DEBUG, INFO, WARNING, etc.)
+transformers.logging.set_verbosity_info()
+
+# 2. Get the core Hugging Face logger
+hf_logger = transformers.logging.get_logger()
+
+# 3. Create a file handler to write to 'huggingface.log'
+file_handler = logging.FileHandler("huggingface.log")
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+# 4. Add the handler to the logger
+hf_logger.addHandler(file_handler)
+
+
 HF_username="hasilm1"
 App_name="Earthquake_prediction"
 Model_name="best_predict_earthquake_model_v1.joblib"
