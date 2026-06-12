@@ -16,7 +16,10 @@ import os
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
-# Instead of: print("Hello World")
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
   
 api = HfApi()
 
@@ -56,7 +59,6 @@ preprocessor = make_column_transformer(
 
 # Define GB model
 #gb_model = GradientBoostingClassifier(random_state=42)
-from sklearn.ensemble import RandomForestRegressor
 gb_model = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
 
 #clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
