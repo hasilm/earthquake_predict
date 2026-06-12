@@ -16,7 +16,8 @@ import os
 # for hugging face space authentication to upload files
 from huggingface_hub import login, HfApi, create_repo
 from huggingface_hub.utils import RepositoryNotFoundError, HfHubHTTPError
-
+import logging
+import transformers
 api = HfApi()
 
 # 1. Set the library verbosity level (DEBUG, INFO, WARNING, etc.)
