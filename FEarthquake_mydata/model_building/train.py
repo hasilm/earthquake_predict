@@ -119,10 +119,8 @@ repo_type = "model"
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
 import logging
-import streamlit as st
-
+ 
 # Cache the logger setup to prevent duplicate logging handlers on app re-runs
-@st.cache_resource
 def setup_logging():
     logging.basicConfig(
         level=logging.INFO,
@@ -133,11 +131,9 @@ def setup_logging():
 
 logger = setup_logging()
 
-st.title("My AI App")
 logger.info("The application UI has loaded successfully.")
 
-if st.button("Run Task"):
-    logger.warning("User triggered a sample task.")
+logger.warning("User triggered a sample task.")
 
 # Step 1: Check if the space exists
 try:
