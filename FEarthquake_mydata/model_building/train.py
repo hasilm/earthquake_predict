@@ -71,7 +71,16 @@ param_distributions = {
 }
 
 # 2. Initialize the baseline regressor
-rf = RandomForestRegressor(n_estimators=100,random_state=42, n_jobs=-1)
+#rf = RandomForestRegressor(n_estimators=100,random_state=42, n_jobs=-1)
+rf = RandomForestRegressor(
+    n_jobs=-1,             # Use all CPU cores (Crucial)
+    n_estimators=100,      # Keep tree count reasonable
+    max_depth=15,          # Stop trees from growing too deep
+    min_samples_leaf=5,    # Stop splits early when data thins out
+    max_features='sqrt',   # Scan fewer columns per split
+    random_state=42
+)
+
 #model_pipeline = make_pipeline(preprocessor, rf)
 
 # 3. Setup the randomized cross-validation search
