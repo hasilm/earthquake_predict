@@ -71,7 +71,7 @@ param_distributions = {
 }
 
 # 2. Initialize the baseline regressor
-rf = RandomForestRegressor(random_state=42, n_jobs=-1)
+rf = RandomForestRegressor(n_estimators=100,random_state=42, n_jobs=-1)
 #model_pipeline = make_pipeline(preprocessor, rf)
 
 # 3. Setup the randomized cross-validation search
@@ -85,10 +85,10 @@ rf_random = RandomizedSearchCV(
     n_jobs=-1
 )
 
-rf_random.fit(Xtrain, ytrain)
+rf.fit(Xtrain, ytrain)
 
 # 5. Extract the optimized model
-gb_model = rf_random.best_estimator_
+gb_model = rf.best_estimator_
 print("Best Parameters Found:", rf_random.best_params_)
 
 # Predict on training set
