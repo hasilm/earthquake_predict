@@ -118,23 +118,7 @@ repo_id = str(HF_username)+"/"+str(App_name)                                    
 repo_type = "model"
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
-import logging
  
-# Cache the logger setup to prevent duplicate logging handlers on app re-runs
-def setup_logging():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[logging.StreamHandler()]  # Sends logs directly to HF Container console
-    )
-    return logging.getLogger(__name__)
-
-logger = setup_logging()
-
-logger.info("The application UI has loaded successfully.")
-
-logger.warning("User triggered a sample task.")
-
 # Step 1: Check if the space exists
 try:
     api.repo_info(repo_id=repo_id, repo_type=repo_type)
