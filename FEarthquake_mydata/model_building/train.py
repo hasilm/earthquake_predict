@@ -64,7 +64,7 @@ preprocessor = make_column_transformer(
 # 1. Define the hyperparameter search space
 param_distributions = {
     'n_estimators': [100, 200],
-    'max_depth': [None, 10],
+    'max_depth': [None, 10,20,30],
     'min_samples_split': [2, 5],
     'min_samples_leaf': [1, 2],
     'max_features': ['sqrt', 'log2', 0.3]
