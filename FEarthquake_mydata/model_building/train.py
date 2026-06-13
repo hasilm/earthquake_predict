@@ -22,8 +22,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import RandomizedSearchCV
 
-api = HfApi()
-
 HF_username="hasilm1"
 App_name="Earthquake_prediction"
 Model_name="best_predict_earthquake_model_v1.joblib"
@@ -74,13 +72,13 @@ param_distributions = {
 
 # 2. Initialize the baseline regressor
 rf = RandomForestRegressor(random_state=42, n_jobs=-1)
-model_pipeline = make_pipeline(preprocessor, rf)
+#model_pipeline = make_pipeline(preprocessor, rf)
 
 # 3. Setup the randomized cross-validation search
 rf_random = RandomizedSearchCV(
     estimator=rf, 
     param_distributions=param_distributions, 
-    n_iter=50,          # Number of random combinations to try
+    n_iter=5,          # 50 Number of random combinations to try
     cv=5,               # 5-fold cross-validation
     scoring='neg_mean_squared_error',
     random_state=42, 
