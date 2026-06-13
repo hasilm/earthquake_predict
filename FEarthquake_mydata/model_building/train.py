@@ -94,11 +94,11 @@ rf_random = RandomizedSearchCV(
     n_jobs=-1
 )
 
-rf.fit(Xtrain, ytrain)
+rf_random.fit(Xtrain, ytrain)
 
 # 5. Extract the optimized model
 #gb_model = rf_random.best_estimator_
-gb_model = rf
+gb_model = rf_random
 #print("Best Parameters Found:", rf_random.best_params_)
 
 # Predict on training set
