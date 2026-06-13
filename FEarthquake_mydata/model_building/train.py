@@ -59,30 +59,38 @@ preprocessor = make_column_transformer(
 
 # Define GB model
 #gb_model = GradientBoostingClassifier(random_state=42)
-gb_model = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
+#gb_model = RandomForestRegressor(n_estimators=100, max_depth=None, random_state=42)
 
-#clf = DecisionTreeClassifier(criterion='gini', max_depth=3, random_state=42)
-
-# 5. Train (fit) the model on the training data
-#clf.fit(Xtrain, ytrain)
-# Define hyperparameter grid
-param_grid = {
-    'gradientboostingclassifier__n_estimators': [75, 100, 125],
-    'gradientboostingclassifier__max_depth': [2, 3, 4],
-    'gradientboostingclassifier__subsample': [0.5, 0.6]
+ 
+# 1. Define the hyperparameter search space
+param_distributions = {
+    'n_estimators': [100, 200, 300, 500],
+    'max_depth': [None, 10, 20, 30, 40],
+    'min_samples_split': [2, 5, 10, 20],
+    'min_samples_leaf': [1, 2, 4, 8],
+    'max_features': ['sqrt', 'log2', 0.3, 0.5]
 }
 
-# Create pipeline
-model_pipeline = make_pipeline(preprocessor, gb_model)
+# 2. Initialize the baseline regressor
+rf = RandomForestRegressor(random_state=42, n_jobs=-1)
+model_pipeline = make_pipeline(preprocessor, rf)
 
-# Grid search with cross-validation
-#grid_search = GridSearchCV(model_pipeline, param_grid, cv=5, scoring='recall', n_jobs=-1)
-#grid_search.fit(Xtrain, ytrain)
-gb_model.fit(Xtrain, ytrain)
+# 3. Setup the randomized cross-validation search
+rf_random = RandomizedSearchCV(
+    estimator=model_pipeline, 
+    param_distributions=param_distributions, 
+    n_iter=50,          # Number of random combinations to try
+    cv=5,               # 5-fold cross-validation
+    scoring='neg_mean_squared_error',
+    random_state=42, 
+    n_jobs=-1
+)
 
-# Best model
-#best_model = grid_search.best_estimator_
-#print("Best Params:\n", grid_search.best_params_)
+rf_random.fit(Xtrain, ytrain)
+
+# 5. Extract the optimized model
+gb_model = rf_random.best_estimator_
+print("Best Parameters Found:", rf_random.best_params_)
 
 # Predict on training set
 #y_pred_train = best_model.predict(Xtrain)
