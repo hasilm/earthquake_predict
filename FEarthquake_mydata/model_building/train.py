@@ -63,11 +63,11 @@ preprocessor = make_column_transformer(
  
 # 1. Define the hyperparameter search space
 param_distributions = {
-    'n_estimators': [100, 200, 300, 500],
-    'max_depth': [None, 10, 20, 30, 40],
-    'min_samples_split': [2, 5, 10, 20],
-    'min_samples_leaf': [1, 2, 4, 8],
-    'max_features': ['sqrt', 'log2', 0.3, 0.5]
+    'n_estimators': [100, 200],
+    'max_depth': [None, 10],
+    'min_samples_split': [2, 5],
+    'min_samples_leaf': [1, 2],
+    'max_features': ['sqrt', 'log2', 0.3]
 }
 
 # 2. Initialize the baseline regressor
@@ -87,8 +87,8 @@ rf = RandomForestRegressor(
 rf_random = RandomizedSearchCV(
     estimator=rf, 
     param_distributions=param_distributions, 
-    n_iter=5,          # 50 Number of random combinations to try
-    cv=5,               # 5-fold cross-validation
+    n_iter=2,          # 50 Number of random combinations to try
+    cv=3,               # 5-fold cross-validation
     scoring='neg_mean_squared_error',
     random_state=42, 
     n_jobs=-1
