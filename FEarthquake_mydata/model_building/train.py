@@ -78,7 +78,7 @@ model_pipeline = make_pipeline(preprocessor, rf)
 
 # 3. Setup the randomized cross-validation search
 rf_random = RandomizedSearchCV(
-    estimator=model_pipeline, 
+    estimator=rf, 
     param_distributions=param_distributions, 
     n_iter=50,          # Number of random combinations to try
     cv=5,               # 5-fold cross-validation
